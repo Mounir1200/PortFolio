@@ -1,0 +1,442 @@
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.hero-stage--fragments {
+  --reveal-progress: 0;
+  --poster-opacity: 1;
+  --labels-opacity: 1;
+  position: relative;
+  height: 225svh;
+  min-height: 1400px;
+  overflow: clip;
+  background: var(--photo-paper);
+}
+
+.hero-pin--fragments {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  display: block;
+  isolation: isolate;
+  padding: 0;
+  background: var(--photo-paper);
+}
+
+/*
+ * Le canevas conserve le ratio natif 16:9 tout en couvrant le viewport.
+ * Les images et les fragments utilisent ce même repère : aucun masque ne dérive.
+ */
+.collage-assembly {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100vw, 177.7778vh);
+  height: max(100vh, 56.25vw);
+  width: max(100vw, 177.7778dvh);
+  height: max(100dvh, 56.25vw);
+  max-width: none;
+  min-height: 0;
+  margin: 0;
+  overflow: visible;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.collage-poster,
+.clean-portrait,
+.collage-piece {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.collage-poster,
+.clean-portrait {
+  display: block;
+  overflow: hidden;
+}
+
+.clean-portrait {
+  z-index: 0;
+}
+
+.collage-poster {
+  z-index: 1;
+  opacity: var(--poster-opacity);
+  pointer-events: none;
+}
+
+.hero-stage--fragments.is-scroll-ready .collage-poster {
+  will-change: opacity;
+}
+
+.collage-poster img,
+.clean-portrait img,
+.collage-piece img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.collage-piece {
+  --piece-x: 0px;
+  --piece-y: 0px;
+  --piece-scale: 1;
+  --piece-opacity: 1;
+  --piece-wipe: -6%;
+  --wipe-x: 50%;
+  --wipe-y: 50%;
+  z-index: 2;
+  overflow: hidden;
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transform-origin: var(--wipe-x) var(--wipe-y);
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(
+    circle farthest-corner at var(--wipe-x) var(--wipe-y),
+    transparent 0 var(--piece-wipe),
+    rgba(0, 0, 0, 0.18) calc(var(--piece-wipe) + 0.35%),
+    #000 calc(var(--piece-wipe) + 1.05%)
+  );
+  mask-image: radial-gradient(
+    circle farthest-corner at var(--wipe-x) var(--wipe-y),
+    transparent 0 var(--piece-wipe),
+    rgba(0, 0, 0, 0.18) calc(var(--piece-wipe) + 0.35%),
+    #000 calc(var(--piece-wipe) + 1.05%)
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.hero-stage--fragments.is-scroll-ready .collage-piece {
+  opacity: var(--piece-opacity);
+  transform: translate3d(var(--piece-x), var(--piece-y), 0) scale(var(--piece-scale));
+  will-change: transform, opacity, -webkit-mask-image, mask-image;
+}
+
+/* Les formes ci-dessous ne pilotent que les zones cliquables. Les pixels visibles
+   viennent des PNG/WebP alpha, découpés sur les vraies déchirures. */
+.piece-top-left {
+  --wipe-x: 23%;
+  --wipe-y: 31%;
+  --fragment-shape: polygon(
+    0 0, 32% 0, 31% 6%, 29% 14%, 27% 21%, 24% 30.7%,
+    21.9% 29.8%, 16% 32.6%, 8% 34.9%, 0 33.9%
+  );
+}
+
+.piece-top-center {
+  z-index: 3;
+  --wipe-x: 51%;
+  --wipe-y: 27%;
+  --fragment-shape: polygon(
+    32% 0, 82.2% 0, 81.9% 8%, 81.2% 15%, 81.5% 23%, 79.3% 30.6%,
+    75% 30%, 72% 26%, 66% 24%, 59% 20%, 53% 17%, 50% 11.7%,
+    47% 10.6%, 41% 16%, 34% 21%, 28% 27%, 21.9% 29.8%, 24% 30.7%,
+    27% 21%, 29% 14%, 31% 6%
+  );
+}
+
+.piece-top-right {
+  --wipe-x: 81%;
+  --wipe-y: 31%;
+  --fragment-shape: polygon(
+    82.2% 0, 100% 0, 100% 33%, 95% 32.4%, 90% 31.8%, 85% 29.7%,
+    81.3% 28.7%, 79.3% 30.6%, 81.5% 23%, 81.2% 15%, 81.9% 8%
+  );
+}
+
+.piece-middle-left {
+  z-index: 5;
+  --wipe-x: 40.6%;
+  --wipe-y: 68.3%;
+  --fragment-shape: polygon(
+    0 33.9%, 8% 34.9%, 16% 32.6%, 21.9% 29.8%, 24% 30.7%,
+    23.2% 33.7%, 26.5% 36.5%, 30.2% 45.2%, 31% 50.9%, 37.2% 56.7%,
+    36.6% 59.4%, 40.6% 68.3%, 34% 66.9%, 27% 66.3%, 20% 66.5%,
+    13.5% 70%, 6.8% 68%, 0 70.6%
+  );
+}
+
+.piece-middle-right {
+  z-index: 5;
+  --wipe-x: 63.4%;
+  --wipe-y: 60.9%;
+  --fragment-shape: polygon(
+    79.3% 30.6%, 81.3% 28.7%, 85% 29.7%, 90% 31.8%, 95% 32.4%, 100% 33%,
+    100% 66.7%, 90% 65.8%, 82.6% 64.2%, 80% 64.8%, 76% 65.3%, 71% 64.2%,
+    67.2% 61.7%, 63.4% 60.9%, 62.2% 58.5%, 64.4% 56.3%, 65.2% 53.9%,
+    65.7% 51.7%, 65.5% 49.3%, 69.1% 44.6%, 71.7% 42.2%, 74.1% 39.8%,
+    76.7% 35.2%, 79.1% 33%
+  );
+}
+
+.piece-bottom-left {
+  --wipe-x: 40.6%;
+  --wipe-y: 68.3%;
+  --fragment-shape: polygon(
+    0 70.6%, 6.8% 68%, 13.5% 70%, 20% 66.5%, 27% 66.3%, 34% 66.9%,
+    40.6% 68.3%, 42% 70.6%, 44.5% 73%, 45.5% 75.6%, 47.2% 78%,
+    48.6% 80.4%, 47.2% 90.2%, 44.8% 100%, 0 100%
+  );
+}
+
+.piece-bottom-center {
+  z-index: 3;
+  --wipe-x: 53%;
+  --wipe-y: 70%;
+  --fragment-shape: polygon(
+    40.6% 69%, 44.5% 72%, 48.5% 75.5%, 51% 76%, 54% 71%, 58% 66%,
+    61.2% 62.5%, 63.4% 60.9%, 67.2% 61.7%, 71% 64.2%, 76% 65.3%,
+    80% 64.8%, 82.6% 64.2%, 79.9% 67.8%, 78.8% 73.1%, 77.6% 78.5%,
+    76.8% 83.9%, 77.2% 89.3%, 75.5% 100%, 44.8% 100%, 47.2% 90.2%,
+    48.6% 80.4%, 47.2% 78%, 45.5% 75.6%, 42% 70.6%
+  );
+}
+
+.piece-bottom-right {
+  --wipe-x: 82.6%;
+  --wipe-y: 64.2%;
+  --fragment-shape: polygon(
+    82.6% 64.2%, 90% 65.8%, 100% 66.7%, 100% 100%, 75.5% 100%,
+    77.2% 89.3%, 76.8% 83.9%, 77.6% 78.5%, 78.8% 73.1%, 79.9% 67.8%
+  );
+}
+
+.fragment-link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  clip-path: var(--fragment-shape);
+  background: transparent;
+  pointer-events: auto;
+}
+
+.hero-stage--fragments.is-scroll-ready:not(.is-collage-active) .fragment-link {
+  pointer-events: none;
+}
+
+.fragment-link:focus-visible {
+  outline: none;
+}
+
+.fragment-link:focus-visible .fragment-label {
+  outline: 3px solid #faf3eb;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px #0b0b0c;
+}
+
+.collage-piece:has(.fragment-link:hover) img,
+.collage-piece:has(.fragment-link:focus-visible) img {
+  filter: brightness(1.1) contrast(1.025);
+}
+
+.fragment-label {
+  position: absolute;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 11px;
+  min-width: clamp(170px, 19vw, 280px);
+  min-height: 54px;
+  padding: 9px 13px;
+  color: #faf3eb;
+  background: rgba(11, 11, 12, 0.88);
+  border-left: 3px solid #d6864b;
+  opacity: var(--labels-opacity);
+}
+
+.fragment-label > span:first-child {
+  align-self: start;
+  padding-top: 3px;
+  font-family: Consolas, monospace;
+  font-size: 0.58rem;
+  opacity: 0.62;
+}
+
+.fragment-label strong {
+  font-family: Bahnschrift, "Arial Narrow", sans-serif;
+  font-size: clamp(0.92rem, 1.18vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.fragment-label i {
+  font-style: normal;
+}
+
+.piece-top-left .fragment-label {
+  top: 8%;
+  left: 3%;
+}
+
+.piece-middle-right .fragment-label {
+  top: 43%;
+  right: 3%;
+}
+
+.piece-bottom-left .fragment-label {
+  bottom: 8%;
+  left: 3%;
+  border-left-color: #7255a6;
+}
+
+.mobile-fragment-index {
+  display: none;
+}
+
+.assembly-readout {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 18px;
+  left: var(--gutter);
+  z-index: 12;
+  display: grid;
+  grid-template-columns: auto minmax(100px, 210px) 48px;
+  align-items: center;
+  justify-content: end;
+  gap: 12px;
+  font-family: Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.assembly-line {
+  position: relative;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.assembly-line-fill {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: scaleX(var(--reveal-progress));
+  transform-origin: left;
+}
+
+.assembly-value {
+  text-align: right;
+}
+
+@media (max-width: 980px) {
+  .hero-stage--fragments {
+    height: 200svh;
+    min-height: 1100px;
+  }
+
+  .fragment-label {
+    min-width: clamp(150px, 24vw, 220px);
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-stage--fragments {
+    min-height: 980px;
+  }
+
+  .fragment-label {
+    display: none;
+  }
+
+  /* Les WebP sont déjà détourés : sur mobile, leur fondu/translation suffit et
+     évite de recalculer huit masques radiaux plein écran à chaque frame. */
+  .collage-piece {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .assembly-readout {
+    right: 18px;
+    bottom: 16px;
+    left: 18px;
+    grid-template-columns: minmax(80px, 1fr) 44px;
+  }
+
+  .assembly-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stage--fragments {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .hero-pin--fragments {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .collage-assembly {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    display: grid;
+    transform: none;
+  }
+
+  .collage-piece {
+    display: none;
+  }
+
+  .collage-poster,
+  .clean-portrait {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    opacity: 1 !important;
+  }
+
+  .collage-poster {
+    grid-row: 1;
+  }
+
+  .clean-portrait {
+    grid-row: 2;
+  }
+
+  .collage-poster img,
+  .clean-portrait img {
+    object-fit: cover;
+  }
+
+  .mobile-fragment-index,
+  .assembly-readout {
+    display: none;
+  }
+}

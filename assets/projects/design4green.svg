@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" fill="none">
+  <defs>
+    <pattern id="dg-paper" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M3 7l5-2M15 19l6-3M19 5l2-1M5 16l2 1" stroke="#0b0b0c" stroke-width="1" opacity=".055"/>
+    </pattern>
+    <pattern id="dg-hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-22)">
+      <path d="M0 2h8M0 6h8" stroke="#0b0b0c" stroke-width="1" opacity=".16"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="240" fill="#c9bcaf"/>
+  <rect width="600" height="240" fill="url(#dg-paper)"/>
+  <g stroke="#0b0b0c" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M20 26h155v190H20z" fill="#b8ab9e" stroke-width="2"/>
+    <path d="M34 43h127v22H34zM34 76h72v52H34zM116 76h45v52h-45zM34 140h127v13H34zM34 164h127v37H34z" fill="url(#dg-hatch)" stroke-width="1.5"/>
+    <path d="M169 38h143v169H169z" fill="#c2b5a8" stroke-width="2"/>
+    <path d="M185 55h111v21H185zM185 90h111v42H185zM185 147h71M185 165h92M185 183h53" stroke-width="2"/>
+    <path d="M302 51h126v145H302z" fill="#cec2b6" stroke-width="2"/>
+    <path d="M319 69h92v18H319zM319 105h92M319 124h73M319 143h84M319 162h52" stroke-width="2"/>
+    <path d="M420 65h114v117H420z" fill="#d8cdc2" stroke-width="3"/>
+    <path d="M438 84h78v17H438zM438 118h78M438 139h55M438 160h38" stroke-width="2.5"/>
+    <path d="M175 31l-17 14M312 44l-17 14M430 57l-17 15" stroke="#d6864b" stroke-width="3"/>
+    <path d="M113 222h367" stroke-width="1.5" stroke-dasharray="5 8" opacity=".45"/>
+    <path d="M518 77h54v22M572 143v25h-54" stroke="#7255a6" stroke-width="3"/>
+    <path d="M518 164c25-5 38-19 43-43" stroke="#7255a6" stroke-width="2.5" stroke-dasharray="4 7"/>
+    <path d="M552 125l10-6-1 12" stroke="#7255a6" stroke-width="2.5"/>
+    <path d="M531 92h17M531 103h27" stroke="#7255a6" stroke-width="2"/>
+  </g>
+  <circle cx="477" cy="172" r="6" fill="#d6864b"/>
+</svg>

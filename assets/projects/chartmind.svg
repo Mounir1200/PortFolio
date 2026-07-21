@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" fill="none">
+  <defs>
+    <pattern id="cm-paper" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M2 7l5-2M15 20l6-3M19 5l2-1M4 17l2 1" stroke="#0b0b0c" stroke-width="1" opacity=".055"/>
+      <circle cx="12" cy="10" r=".7" fill="#0b0b0c" opacity=".06"/>
+    </pattern>
+    <pattern id="cm-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(16)">
+      <path d="M0 2h12M0 8h12" stroke="#0b0b0c" stroke-width="1" opacity=".16"/>
+    </pattern>
+    <clipPath id="cm-lens">
+      <circle cx="304" cy="416" r="154"/>
+    </clipPath>
+  </defs>
+  <rect width="600" height="900" fill="#c9bcaf"/>
+  <rect width="600" height="900" fill="url(#cm-paper)"/>
+  <path d="M46 170L138 105l335 18 76 104-31 487-102 90-328-35-42-111z" fill="#d3c7bb" stroke="#0b0b0c" stroke-width="1.5" opacity=".8"/>
+  <path d="M39 690c94-52 127-155 206-177 103-30 158 57 315-30" stroke="#0b0b0c" stroke-width="34" opacity=".08"/>
+  <g stroke="#0b0b0c" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M80 214h58M109 185v58M464 641h54M491 614v54" stroke-width="1.4" opacity=".34"/>
+    <path d="M72 741C151 704 174 624 236 572c77-66 155-61 302-139" stroke-width="4"/>
+    <path d="M54 702C142 681 167 586 233 535c75-58 176-31 313-136" stroke-width="1.5" opacity=".6"/>
+    <path d="M64 784C165 721 196 672 259 632c78-50 151-58 278-130" stroke-width="1.5" opacity=".38"/>
+    <circle cx="304" cy="416" r="174" stroke-width="2.5"/>
+    <circle cx="304" cy="416" r="154" stroke-width="1.5" stroke-dasharray="3 10" opacity=".72"/>
+    <circle cx="304" cy="416" r="116" stroke-width="30" opacity=".08"/>
+    <path d="M150 416h308M304 262v308" stroke-width="1" opacity=".35"/>
+    <path d="M184 496C221 375 270 322 413 315" stroke-width="5"/>
+    <path d="M191 507C242 428 287 398 421 367" stroke="#7255a6" stroke-width="8"/>
+    <path d="M181 522C260 528 304 480 338 425c27-44 54-65 96-76" stroke="#d6864b" stroke-width="5"/>
+    <g clip-path="url(#cm-lens)">
+      <path d="M116 571l386-319 48 55-386 319z" fill="url(#cm-hatch)"/>
+      <path d="M176 536l278-230" stroke="#0b0b0c" stroke-width="18" opacity=".12"/>
+      <path d="M304 226v390M109 416h390" stroke-width="1" opacity=".18"/>
+    </g>
+    <circle cx="304" cy="416" r="28" fill="#c9bcaf" stroke-width="7"/>
+    <circle cx="304" cy="416" r="9" fill="#0b0b0c" stroke="none"/>
+    <path d="M291 415l9 10 19-25" stroke="#d6864b" stroke-width="4"/>
+    <path d="M92 802h55l18-31 31 45 30-76 34 55 30-22 38 12 34-57 38 84 26-42 34 24h68" stroke-width="3"/>
+    <path d="M92 826h416" stroke-width="1" opacity=".35"/>
+    <path d="M102 817v18M199 817v18M296 817v18M393 817v18M490 817v18" stroke-width="1" opacity=".35"/>
+    <path d="M95 140l28 14 19-27M469 751l24-21 23 13" stroke="#7255a6" stroke-width="3"/>
+  </g>
+  <g fill="#0b0b0c">
+    <circle cx="147" cy="739" r="5"/>
+    <circle cx="226" cy="740" r="5"/>
+    <circle cx="342" cy="728" r="5"/>
+    <circle cx="426" cy="770" r="5"/>
+  </g>
+</svg>

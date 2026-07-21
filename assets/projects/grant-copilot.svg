@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240" fill="none">
+  <defs>
+    <pattern id="gc-paper" width="22" height="22" patternUnits="userSpaceOnUse">
+      <path d="M3 6l4-2M14 18l5-2M18 5l2 1M5 16l2 1" stroke="#0b0b0c" stroke-width="1" opacity=".055"/>
+    </pattern>
+    <pattern id="gc-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(-18)">
+      <path d="M0 2h9M0 7h9" stroke="#0b0b0c" stroke-width="1" opacity=".14"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="240" fill="#c9bcaf"/>
+  <rect width="600" height="240" fill="url(#gc-paper)"/>
+  <path d="M28 29l218-12 54 27-17 171-239 7-23-58z" fill="#d4c8bc" stroke="#0b0b0c" stroke-width="1.2" opacity=".72"/>
+  <g stroke="#0b0b0c" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 55l98-9 11 122-98 9z" fill="#bdb0a3" stroke-width="2"/>
+    <path d="M79 39l103 7-8 124-103-7z" fill="#d8cdc2" stroke-width="2"/>
+    <path d="M104 29l106 15-18 126-106-15z" fill="#c9bcaf" stroke-width="2.5"/>
+    <path d="M118 62l66 10M115 79l53 8M112 98l64 9M109 117l43 6M106 136l61 9" stroke-width="2" opacity=".55"/>
+    <path d="M216 56l65 45M210 151l72-35" stroke-width="2" stroke-dasharray="4 6" opacity=".48"/>
+    <circle cx="307" cy="111" r="42" fill="#0b0b0c" stroke-width="2"/>
+    <circle cx="307" cy="111" r="27" fill="#c9bcaf" stroke="none"/>
+    <path d="M291 111h32M307 95v32" stroke="#7255a6" stroke-width="5"/>
+    <path d="M349 98l60-44M349 122l60 49M349 111l54 1" stroke-width="2" stroke-dasharray="5 7" opacity=".6"/>
+    <path d="M418 28l76 12-9 59-76-12z" fill="url(#gc-hatch)" stroke-width="1.5" opacity=".48"/>
+    <path d="M414 88l80 6-4 57-80-6z" fill="#b9ac9f" stroke-width="1.5" opacity=".55"/>
+    <path d="M416 147l79 9-7 58-79-9z" fill="url(#gc-hatch)" stroke-width="1.5" opacity=".48"/>
+    <path d="M475 35l73 12-10 62-73-12z" fill="#d2c6ba" stroke="#7255a6" stroke-width="3"/>
+    <path d="M469 134l79-4 3 65-79 4z" fill="#d2c6ba" stroke="#d6864b" stroke-width="3"/>
+    <path d="M490 58l37 6M486 73l42 7M482 88l30 5M487 151l40-2M488 166l36-2M489 181l27-2" stroke-width="2" opacity=".72"/>
+    <path d="M521 99l8 8 16-19M522 187l8 7 15-18" stroke-width="3"/>
+  </g>
+  <circle cx="552" cy="36" r="5" fill="#7255a6"/>
+  <circle cx="557" cy="205" r="5" fill="#d6864b"/>
+</svg>
