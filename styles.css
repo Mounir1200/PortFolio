@@ -120,7 +120,7 @@ img {
   display: inline-flex;
   align-items: baseline;
   gap: 7px;
-  font-family: Consolas, monospace;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -131,6 +131,73 @@ img {
 
 .wordmark span:last-child {
   opacity: 0.58;
+}
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-right: auto;
+  padding: 0;
+  font-family: Aptos, "Segoe UI", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 750;
+  letter-spacing: normal;
+  color: #0b0b0c;
+  background: transparent;
+  border: 0;
+}
+
+.language-switcher button {
+  position: relative;
+  min-width: 29px;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  color: rgba(11, 11, 12, 0.88);
+  background: transparent;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+  text-shadow:
+    0 0 2px var(--photo-paper-light),
+    0 0 7px rgba(216, 203, 191, 0.96);
+  transition: color 160ms ease-out;
+}
+
+.language-switcher button[aria-pressed="true"] {
+  color: #0b0b0c;
+  font-weight: 800;
+}
+
+.language-switcher button[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  left: 4px;
+  height: 2px;
+  background: #0b0b0c;
+  box-shadow: 0 0 2px #faf3eb;
+}
+
+.language-switcher button:hover,
+.language-switcher button:focus-visible {
+  color: #593f8d;
+  background: transparent;
+}
+
+.language-switcher button:focus-visible {
+  outline: 2px solid #593f8d;
+  outline-offset: 1px;
+}
+
+.language-switcher > span {
+  color: rgba(11, 11, 12, 0.58);
+  font-weight: 750;
+  text-shadow:
+    0 0 2px var(--photo-paper-light),
+    0 0 7px rgba(216, 203, 191, 0.96);
 }
 
 .top-nav {
@@ -1336,6 +1403,14 @@ img {
 
   .site-header {
     gap: 14px;
+  }
+
+  .language-switcher {
+    font-size: 0.78rem;
+  }
+
+  .language-switcher button {
+    min-width: 26px;
   }
 
   .top-nav {
