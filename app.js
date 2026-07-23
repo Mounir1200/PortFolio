@@ -4,6 +4,7 @@ const scrollValue = document.querySelector("[data-scroll-value]");
 const collagePieces = [...document.querySelectorAll("[data-piece]")];
 const fragmentLinks = [...document.querySelectorAll(".fragment-link")];
 const sectionLinks = [...document.querySelectorAll('.top-nav a[href^="#"]')];
+const cvLinks = [...document.querySelectorAll("[data-cv-action]")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const translations = {
@@ -98,6 +99,7 @@ const translations = {
   Curiosité: "Curiosity",
   "Contact / collaboration": "Contact / collaboration",
   "Parlons-en.": "Let’s talk.",
+  "Voir mon CV": "View my résumé",
   "Revenir à l’image": "Back to the image",
   "© 2026 Mounir DABIRE · Développeur IA": "© 2026 Mounir DABIRE · AI Developer",
 };
@@ -120,8 +122,18 @@ const translatedAttributes = {
   "Stack et pratiques utilisées pour Activ’ESAIP": "Technology stack and practices used for Activ’ESAIP",
   "Stack et pratiques utilisées pour Design4Green": "Technology stack and practices used for Design4Green",
   "Registre des compétences": "Skills register",
-  "Liens de contact": "Contact links",
+  "Liens de contact et CV": "Contact and résumé links",
+  "Voir mon CV en français dans un nouvel onglet": "View my English résumé in a new tab",
   "Choisir la langue": "Choose language",
+};
+
+const cvFiles = {
+  fr: {
+    path: "./CV/DABIRE_Mounir_CV_FR.pdf",
+  },
+  en: {
+    path: "./CV/DABIRE_Mounir_CV_EN.pdf",
+  },
 };
 
 const normaliseText = (value) => value.replace(/\s+/g, " ").trim();
@@ -177,6 +189,10 @@ function applyLanguage(language, persist = false) {
 
   document.querySelectorAll("[data-lang]").forEach((button) => {
     button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
+  });
+
+  cvLinks.forEach((link) => {
+    link.href = cvFiles[lang].path;
   });
 
   if (persist) {
