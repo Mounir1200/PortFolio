@@ -92,6 +92,8 @@ const translations = {
   "Simple · Curieux · Attentif": "Simple · Curious · Thoughtful",
   Développement: "Development",
   "Intelligence artificielle": "Artificial intelligence",
+  "Prompt Engineering": "Prompt Engineering",
+  "Intégration LLM par API": "LLM API Integration",
   Outils: "Tools",
   Atouts: "Strengths",
   Langues: "Languages",
