@@ -294,13 +294,15 @@
               <p>Projet personnel · Hackathon</p>
               <h3>Grant Copilot</h3>
               <p>
-                Agent Slack pour rechercher des subventions fédérales américaines, présélectionner
-                les opportunités, programmer des rappels et générer des brouillons sans quitter Slack.
+                Agent Slack conçu pour le Slack Agent Builder Challenge (Agent for Good) : recherche en direct
+                sur Grants.gov via un serveur FastMCP sur mesure, présélection par filtres déterministes hors du
+                contrôle du modèle, suivi des candidatures et brouillons soumis à relecture. Chaque résultat cite
+                sa fiche officielle.
               </p>
               <div class="project-stack">
                 <span class="project-stack-label">Technos</span>
                 <ul aria-label="Stack utilisée pour Grant Copilot">
-                  <li>Python</li><li>Slack Bolt</li><li>MCP / FastMCP</li><li>Mistral Small</li><li>SQLite</li><li>APScheduler</li>
+                  <li>Python</li><li>Slack Bolt</li><li>MCP / FastMCP</li><li>Mistral Small</li><li>SQLite</li><li>APScheduler</li><li>Render</li>
                 </ul>
               </div>
               <a class="project-link" href="https://github.com/Mounir1200/Grant-Copilot" target="_blank" rel="noreferrer">
@@ -317,13 +319,15 @@
               <p>Projet personnel · Open source</p>
               <h3>UrdWell</h3>
               <p>
-                Serveur MCP de mémoire à long terme pour agents de code. J’en ai conçu l’architecture
-                et la persistance afin de restituer un contexte utile entre les sessions.
+                Serveur MCP open source (Apache-2.0) qui conserve le contexte entre les sessions. En complément
+                de la recherche vectorielle, BM25 avec fusion RRF porte le rappel top-1 de 0,55 à 0,60 sur 419
+                questions LongMemEval ; la réutilisation des index ramène l’évaluation complète de 60 h à 8,8 h.
+                Un installeur en une ligne le connecte à huit agents de code.
               </p>
               <div class="project-stack">
                 <span class="project-stack-label">Technos</span>
                 <ul aria-label="Stack utilisée pour UrdWell">
-                  <li>Python</li><li>MCP</li><li>Agents IA</li>
+                  <li>Python</li><li>MCP</li><li>BM25 / RRF</li><li>Embeddings ONNX</li><li>Parquet</li><li>Tests E2E</li>
                 </ul>
               </div>
               <a class="project-link" href="https://github.com/Mounir1200/urdwell-mcp" target="_blank" rel="noreferrer">
@@ -455,10 +459,10 @@
                 <h3>Développeur IA</h3>
                 <p class="experience-company">ESSCA School of Management · Angers</p>
                 <ul class="experience-missions">
-                  <li>Concevoir et maintenir des agents conversationnels et des systèmes RAG.</li>
-                  <li>Sélectionner les modèles et réaliser le prompt engineering avec OpenAI et Claude.</li>
-                  <li>Créer des interfaces React et des outils IA internes.</li>
-                  <li>Déployer les solutions de manière sécurisée sur Azure.</li>
+                  <li>Concevoir, développer et maintenir des agents conversationnels et des systèmes RAG avancés pour la recherche d’informations en langage naturel.</li>
+                  <li>Déployer, orchestrer et maintenir des modèles propriétaires (OpenAI, Claude) et open source.</li>
+                  <li>Créer des interfaces utilisateur réactives avec React et Tailwind CSS.</li>
+                  <li>Industrialiser et mettre en production de manière sécurisée des solutions d’IA sur Azure.</li>
                 </ul>
               </div>
               <span aria-hidden="true">A</span>
@@ -469,22 +473,21 @@
                 <h3>Projet de fin d’études · Développeur IA</h3>
                 <p class="experience-company">ESSCA School of Management · Angers</p>
                 <ul class="experience-missions">
-                  <li>Développer un écosystème d’agents conversationnels RAG.</li>
-                  <li>Transformer les maquettes Figma en interface React.</li>
-                  <li>Intégrer la solution à l’infrastructure Azure.</li>
+                  <li>Concevoir et développer un écosystème d’agents conversationnels fondé sur une architecture RAG.</li>
+                  <li>Réaliser une interface utilisateur réactive en React à partir de maquettes Figma.</li>
+                  <li>Déployer la solution de manière sécurisée sur Azure et l’interfacer avec les plateformes internes.</li>
                 </ul>
               </div>
               <span aria-hidden="true">B</span>
             </article>
             <article>
-              <p class="experience-date">Avril — Juin 2025</p>
+              <p class="experience-date">Avril — Juillet 2025</p>
               <div>
-                <h3>Stagiaire développeur</h3>
+                <h3>Stagiaire développeur · Applications internes</h3>
                 <p class="experience-company">ESSCA School of Management · Angers</p>
                 <ul class="experience-missions">
                   <li>Mettre à jour et déployer un agent conversationnel.</li>
-                  <li>Développer un annuaire RH sous IA.</li>
-                  <li>Permettre la recherche d’informations en langage naturel.</li>
+                  <li>Développer et déployer un annuaire RH sous IA pour la recherche d’informations en langage naturel.</li>
                 </ul>
               </div>
               <span aria-hidden="true">C</span>
@@ -492,12 +495,12 @@
             <article>
               <p class="experience-date">Juin — Août 2024</p>
               <div>
-                <h3>Stagiaire Data Engineer</h3>
+                <h3>Stagiaire Data Engineer · Data Lakehouse &amp; données CDR</h3>
                 <p class="experience-company">Moov Africa · Burkina Faso</p>
                 <ul class="experience-missions">
-                  <li>Étudier les systèmes de stockage de données à grande échelle.</li>
-                  <li>Simuler l’architecture d’un data lakehouse.</li>
-                  <li>Intégrer des données CDR en flux continu.</li>
+                  <li>Étudier et analyser les systèmes de stockage à grande échelle : Data Warehouse, Data Lake et Data Lakehouse.</li>
+                  <li>Intégrer des données open source et simuler un data lakehouse afin d’observer le stockage et les formats.</li>
+                  <li>Intégrer des données CDR et simuler leur stockage en flux continu, jusqu’à trois flux en parallèle.</li>
                 </ul>
               </div>
               <span aria-hidden="true">D</span>
