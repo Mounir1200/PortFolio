@@ -116,6 +116,10 @@ const translations = {
   "Anglais (courant · TOEIC 910/990)": "English (fluent · TOEIC 910/990)",
   "Mooré (natif)": "Mooré (native)",
   "Allemand (débutant)": "German (beginner)",
+  "Confiance / collaboration": "Trust / collaboration",
+  "Recommandé par": "Recommended by",
+  "Trois personnes qui recommandent mon travail et mon parcours.": "Three people who recommend my work and professional journey.",
+  "Profil LinkedIn": "LinkedIn profile",
   "Contact / collaboration": "Contact / collaboration",
   "Parlons-en.": "Let’s talk.",
   "Voir mon CV": "View my résumé",
@@ -141,6 +145,10 @@ const translatedAttributes = {
   "Stack et pratiques utilisées pour Activ’ESAIP": "Technology stack and practices used for Activ’ESAIP",
   "Stack et pratiques utilisées pour Design4Green": "Technology stack and practices used for Design4Green",
   "Registre des compétences": "Skills register",
+  "Profils LinkedIn des personnes qui recommandent Mounir DABIRE": "LinkedIn profiles of people who recommend Mounir DABIRE",
+  "Voir le profil LinkedIn de Kassoum Sanogo dans un nouvel onglet": "View Kassoum Sanogo’s LinkedIn profile in a new tab",
+  "Voir le profil LinkedIn de Mickaël Geslin dans un nouvel onglet": "View Mickaël Geslin’s LinkedIn profile in a new tab",
+  "Voir le profil LinkedIn de Junior Moughiama dans un nouvel onglet": "View Junior Moughiama’s LinkedIn profile in a new tab",
   "Liens de contact et CV": "Contact and résumé links",
   "Voir mon CV en français dans un nouvel onglet": "View my English résumé in a new tab",
   "Choisir la langue": "Choose language",
@@ -371,7 +379,7 @@ if (hero) {
   reducedMotion.addEventListener("change", syncMotionPreference);
 }
 
-const observedSections = ["formations", "projets", "experiences", "competences"]
+const observedSections = ["formations", "projets", "experiences", "competences", "recommandations"]
   .map((id) => document.getElementById(id))
   .filter(Boolean);
 
