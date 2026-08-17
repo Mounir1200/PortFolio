@@ -1161,6 +1161,138 @@ img {
   color: var(--violet);
 }
 
+.section-recommendations {
+  color: var(--ink);
+  background: var(--photo-paper);
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.section-recommendations .section-number {
+  color: var(--ink);
+  opacity: 0.2;
+}
+
+.section-recommendations .section-kicker {
+  color: #9d4d20;
+}
+
+.section-recommendations .section-heading h2 {
+  font-size: clamp(3.6rem, 8.4vw, 8.8rem);
+  line-height: 0.8;
+}
+
+.section-recommendations .section-side-note {
+  color: rgba(11, 11, 12, 0.58);
+}
+
+.recommender-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.recommender-list > li:not(:last-child) {
+  border-right: 1px solid var(--line-dark);
+}
+
+.recommender-profile {
+  min-height: clamp(300px, 30vw, 440px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr auto;
+  gap: 32px;
+  padding: clamp(28px, 3.4vw, 52px);
+  color: inherit;
+  transition: color 160ms ease-out, background-color 160ms ease-out;
+}
+
+.recommender-symbol {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: clamp(112px, 11vw, 172px);
+  aspect-ratio: 1;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line-dark);
+  border-radius: 50%;
+  background: var(--photo-paper-edge);
+  transition: border-color 160ms ease-out;
+}
+
+.recommender-symbol img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(0.86) contrast(1.03);
+}
+
+.recommender-meta {
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
+  align-self: end;
+  display: grid;
+  gap: 14px;
+}
+
+.recommender-meta strong {
+  font-family: Bahnschrift, "Arial Narrow", sans-serif;
+  font-size: clamp(1.45rem, 2.5vw, 2.8rem);
+  font-stretch: condensed;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.recommender-platform {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(11, 11, 12, 0.58);
+  transition: color 160ms ease-out;
+}
+
+.recommender-platform svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.recommender-arrow {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: end;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ember);
+}
+
+.recommender-profile:hover,
+.recommender-profile:focus-visible {
+  background: rgba(114, 85, 166, 0.09);
+}
+
+.recommender-profile:hover .recommender-symbol,
+.recommender-profile:focus-visible .recommender-symbol,
+.recommender-profile:hover .recommender-platform,
+.recommender-profile:focus-visible .recommender-platform {
+  color: #593f8d;
+  border-color: #593f8d;
+}
+
 .site-footer {
   min-height: 72svh;
   display: grid;
@@ -1649,6 +1781,56 @@ img {
     font-size: 0.9rem;
   }
 
+  .section-recommendations .section-heading h2 {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+    line-height: 0.84;
+  }
+
+  .recommender-list {
+    grid-template-columns: 1fr;
+  }
+
+  .recommender-list > li:not(:last-child) {
+    border-right: 0;
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .recommender-profile {
+    min-height: 0;
+    grid-template-columns: 68px minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    gap: 18px;
+    align-items: center;
+    padding: 24px 0;
+  }
+
+  .recommender-symbol {
+    grid-column: 1;
+    grid-row: 1;
+    width: 68px;
+  }
+
+  .recommender-meta {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    gap: 8px;
+  }
+
+  .recommender-meta strong {
+    font-size: clamp(1.25rem, 6vw, 1.65rem);
+  }
+
+  .recommender-platform {
+    font-size: 0.58rem;
+  }
+
+  .recommender-arrow {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+  }
+
   .site-footer {
     min-height: 64svh;
     grid-template-columns: 1fr;
@@ -1721,6 +1903,7 @@ img {
   .record-list,
   .experience-records,
   .skills-register,
+  .recommender-list,
   .footer-links {
     border: 1px solid CanvasText;
   }
