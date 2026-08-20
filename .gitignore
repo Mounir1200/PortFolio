@@ -1,5 +1,7 @@
 dist/
 node_modules/
+.astro/
+.npm-cache/
 .agents/
 __pycache__/
 *.py[cod]
