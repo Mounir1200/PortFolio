@@ -343,7 +343,7 @@ def main() -> None:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("assets/fragments"),
+        default=Path("public/assets/fragments"),
         help="Dossier de sortie",
     )
     parser.add_argument("--widths", type=int, nargs="+", default=(960, 1600, 2400))

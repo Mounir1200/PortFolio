@@ -4,8 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server.mjs",
-    "build": "node scripts/build.mjs",
-    "preview": "node server.mjs dist 4174"
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "astro": "^7.2.4",
+    "typescript": "^5.9.3"
   }
 }

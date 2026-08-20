@@ -1,13 +1,8 @@
-const hero = document.querySelector("[data-hero]");
-const siteHeader = document.querySelector(".site-header");
-const scrollValue = document.querySelector("[data-scroll-value]");
-const collagePieces = [...document.querySelectorAll("[data-piece]")];
-const fragmentLinks = [...document.querySelectorAll(".fragment-link")];
-const sectionLinks = [...document.querySelectorAll('.top-nav a[href^="#"]')];
-const cvLinks = [...document.querySelectorAll("[data-cv-action]")];
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+export type Language = "fr" | "en";
 
-const translations = {
+export const LANGUAGE_STORAGE_KEY = "portfolio-language";
+
+export const translations = {
   "Aller au contenu": "Skip to content",
   Formations: "Education",
   Projets: "Projects",
@@ -127,9 +122,9 @@ const translations = {
   "Voir mon CV": "View my résumé",
   "Revenir à l’image": "Back to the image",
   "© 2026 Mounir DABIRE · Ingénieur IA · Angers": "© 2026 Mounir DABIRE · AI Engineer · Angers",
-};
+} as const satisfies Readonly<Record<string, string>>;
 
-const translatedAttributes = {
+export const translatedAttributes = {
   "Portfolio de Mounir DABIRE — ingénieur IA spécialisé dans les agents IA en production, le RAG, MCP, les LLM et Microsoft Azure.": "Mounir DABIRE’s portfolio — AI engineer specialising in production AI agents, RAG, MCP, LLMs and Microsoft Azure.",
   "En-tête du portfolio": "Portfolio header",
   "Retour à l’accueil": "Back to home",
@@ -155,263 +150,18 @@ const translatedAttributes = {
   "Liens de contact et CV": "Contact and résumé links",
   "Voir mon CV en français dans un nouvel onglet": "View my English résumé in a new tab",
   "Choisir la langue": "Choose language",
-};
+} as const satisfies Readonly<Record<string, string>>;
 
-const cvFiles = {
+export const cvFiles = {
   fr: {
     path: "./CV/DABIRE_Mounir_CV_FR.pdf",
   },
   en: {
     path: "./CV/DABIRE_Mounir_CV_EN.pdf",
   },
-};
+} as const satisfies Readonly<Record<Language, { readonly path: string }>>;
 
-const normaliseText = (value) => value.replace(/\s+/g, " ").trim();
-const textNodes = [];
-const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-  acceptNode(node) {
-    if (!normaliseText(node.nodeValue) || node.parentElement?.closest("script, style")) {
-      return NodeFilter.FILTER_REJECT;
-    }
-    return NodeFilter.FILTER_ACCEPT;
-  },
-});
-
-while (walker.nextNode()) {
-  const node = walker.currentNode;
-  textNodes.push({ node, french: node.nodeValue, key: normaliseText(node.nodeValue) });
-}
-
-const attributeNodes = [...document.querySelectorAll("[aria-label], meta[name='description']")].map((element) => {
-  const attribute = element.matches("meta") ? "content" : "aria-label";
-  return { element, attribute, french: element.getAttribute(attribute) };
-});
-
-const pageTitles = {
+export const pageTitles = {
   fr: "Mounir DABIRE — Ingénieur IA",
   en: "Mounir DABIRE — AI Engineer",
-};
-
-function applyLanguage(language, persist = false) {
-  const lang = language === "en" ? "en" : "fr";
-  document.documentElement.lang = lang;
-  document.title = pageTitles[lang];
-
-  textNodes.forEach(({ node, french, key }) => {
-    if (lang === "fr" || !translations[key]) {
-      node.nodeValue = french;
-      return;
-    }
-
-    const headingKey = node.parentElement?.id === "experiences-title" ? `experiences-title:${key}` : key;
-    const translatedText = {
-      "experiences-title:Expériences": "Professional",
-      "experiences-title:professionnelles": "Experience",
-    }[headingKey] ?? translations[key];
-    const leading = french.match(/^\s*/)?.[0] ?? "";
-    const trailing = french.match(/\s*$/)?.[0] ?? "";
-    node.nodeValue = `${leading}${translatedText}${trailing}`;
-  });
-
-  attributeNodes.forEach(({ element, attribute, french }) => {
-    element.setAttribute(attribute, lang === "en" ? translatedAttributes[french] ?? french : french);
-  });
-
-  document.querySelectorAll("[data-lang]").forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
-  });
-
-  cvLinks.forEach((link) => {
-    link.href = cvFiles[lang].path;
-  });
-
-  if (persist) {
-    try { localStorage.setItem("portfolio-language", lang); } catch { /* Storage can be unavailable. */ }
-  }
-}
-
-let preferredLanguage;
-try { preferredLanguage = localStorage.getItem("portfolio-language"); } catch { /* Use browser language. */ }
-const browserLanguage = navigator.languages?.[0] ?? navigator.language ?? "fr";
-applyLanguage(preferredLanguage || (browserLanguage.toLowerCase().startsWith("fr") ? "fr" : "en"));
-
-document.querySelectorAll("[data-lang]").forEach((button) => {
-  button.addEventListener("click", () => applyLanguage(button.dataset.lang, true));
-  button.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    applyLanguage(button.dataset.lang, true);
-  });
-});
-
-const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
-const smoothstep = (value) => {
-  const t = clamp(value);
-  return t * t * (3 - 2 * t);
-};
-
-let frameRequested = false;
-let collageInteractive = true;
-let headerVisible = null;
-
-function setHeaderVisibility(visible) {
-  if (!siteHeader || headerVisible === visible) return;
-
-  headerVisible = visible;
-  siteHeader.classList.toggle("is-visible", visible);
-  siteHeader.toggleAttribute("inert", !visible);
-
-  if (visible) siteHeader.removeAttribute("aria-hidden");
-  else siteHeader.setAttribute("aria-hidden", "true");
-}
-
-const pieceMotion = {
-  "middle-left": { start: 0.07, end: 0.34, x: -1, y: -0.04 },
-  "middle-right": { start: 0.07, end: 0.34, x: 1, y: -0.04 },
-  "top-center": { start: 0.1, end: 0.4, x: 0, y: -0.95 },
-  "bottom-center": { start: 0.13, end: 0.43, x: 0, y: 0.95 },
-  "top-left": { start: 0.16, end: 0.5, x: -0.62, y: -0.78 },
-  "top-right": { start: 0.16, end: 0.5, x: 0.62, y: -0.78 },
-  "bottom-left": { start: 0.19, end: 0.56, x: -0.62, y: 0.78 },
-  "bottom-right": { start: 0.19, end: 0.56, x: 0.62, y: 0.78 },
-};
-
-function updateHero() {
-  frameRequested = false;
-
-  if (!hero) {
-    setHeaderVisibility(true);
-    return;
-  }
-
-  if (reducedMotion.matches) {
-    setHeaderVisibility(window.scrollY >= window.innerHeight * 0.9);
-    return;
-  }
-
-  const rect = hero.getBoundingClientRect();
-  const travel = Math.max(1, rect.height - window.innerHeight);
-  const rawProgress = clamp(-rect.top / travel);
-  const reveal = smoothstep((rawProgress - 0.025) / 0.56);
-  const posterOpacity = 1 - smoothstep((rawProgress - 0.055) / 0.04);
-  const labels = 1 - smoothstep((rawProgress - 0.012) / 0.05);
-  const viewportUnit = Math.min(window.innerWidth, window.innerHeight);
-  const horizontalDistance = clamp(viewportUnit * 0.062, 24, 74);
-  const verticalDistance = clamp(viewportUnit * 0.058, 22, 68);
-
-  hero.style.setProperty("--reveal-progress", reveal.toFixed(4));
-  hero.style.setProperty("--poster-opacity", posterOpacity.toFixed(3));
-  hero.style.setProperty("--labels-opacity", labels.toFixed(3));
-
-  const shouldShowHeader = headerVisible ? rawProgress >= 0.52 : rawProgress >= 0.57;
-  setHeaderVisibility(shouldShowHeader);
-
-  if (rawProgress < 0.99) {
-    sectionLinks.forEach((link) => link.removeAttribute("aria-current"));
-  }
-
-  collagePieces.forEach((piece) => {
-    const name = piece.dataset.piece;
-    const motion = pieceMotion[name];
-    if (!motion) return;
-
-    const localProgress = smoothstep((rawProgress - motion.start) / (motion.end - motion.start));
-    const drift = smoothstep((localProgress - 0.22) / 0.78);
-    const alpha = 1 - smoothstep((localProgress - 0.48) / 0.52);
-    const wipe = -6 + localProgress * 122;
-
-    piece.style.setProperty("--piece-x", `${(motion.x * horizontalDistance * drift).toFixed(2)}px`);
-    piece.style.setProperty("--piece-y", `${(motion.y * verticalDistance * drift).toFixed(2)}px`);
-    piece.style.setProperty("--piece-scale", (1 + drift * 0.004).toFixed(4));
-    piece.style.setProperty("--piece-opacity", alpha.toFixed(3));
-    piece.style.setProperty("--piece-wipe", `${wipe.toFixed(2)}%`);
-  });
-
-  const wasInteractive = collageInteractive;
-  if (rawProgress > 0.055) collageInteractive = false;
-  if (rawProgress < 0.018) collageInteractive = true;
-
-  if (wasInteractive && !collageInteractive) {
-    const focusedFragment = fragmentLinks.find((link) => link === document.activeElement);
-    if (focusedFragment) {
-      const matchingNav = sectionLinks.find(
-        (link) => link.getAttribute("href") === focusedFragment.getAttribute("href"),
-      );
-      matchingNav?.focus({ preventScroll: true });
-    }
-  }
-
-  hero.classList.toggle("is-collage-active", collageInteractive);
-  hero.classList.toggle("is-portrait-revealed", rawProgress >= 0.59);
-  fragmentLinks.forEach((link) => link.setAttribute("tabindex", collageInteractive ? "0" : "-1"));
-
-  if (scrollValue) {
-    scrollValue.textContent = String(Math.round(reveal * 100)).padStart(2, "0");
-  }
-}
-
-function requestHeroUpdate() {
-  if (frameRequested) return;
-  frameRequested = true;
-  window.requestAnimationFrame(updateHero);
-}
-
-function syncMotionPreference() {
-  if (!hero) return;
-
-  hero.classList.toggle("is-scroll-ready", !reducedMotion.matches);
-  if (reducedMotion.matches) {
-    hero.removeAttribute("style");
-    hero.classList.remove("is-collage-active", "is-portrait-revealed");
-    collagePieces.forEach((piece) => piece.removeAttribute("style"));
-    fragmentLinks.forEach((link) => link.setAttribute("tabindex", "-1"));
-    if (scrollValue) scrollValue.textContent = "100";
-    setHeaderVisibility(window.scrollY >= window.innerHeight * 0.9);
-  } else {
-    collageInteractive = true;
-    requestHeroUpdate();
-  }
-}
-
-if (hero) {
-  syncMotionPreference();
-  window.addEventListener("scroll", requestHeroUpdate, { passive: true });
-  window.addEventListener("resize", requestHeroUpdate, { passive: true });
-  hero.addEventListener("focusin", requestHeroUpdate);
-  hero.addEventListener("focusout", requestHeroUpdate);
-  reducedMotion.addEventListener("change", syncMotionPreference);
-}
-
-const observedSections = ["formations", "projets", "experiences", "competences", "recommandations"]
-  .map((id) => document.getElementById(id))
-  .filter(Boolean);
-
-if ("IntersectionObserver" in window && observedSections.length) {
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-      if (!visible) return;
-
-      sectionLinks.forEach((link) => {
-        const active = link.getAttribute("href") === `#${visible.target.id}`;
-        if (active) link.setAttribute("aria-current", "location");
-        else link.removeAttribute("aria-current");
-      });
-    },
-    { rootMargin: "-30% 0px -55%", threshold: [0, 0.1, 0.4] },
-  );
-
-  observedSections.forEach((section) => sectionObserver.observe(section));
-}
-
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", () => {
-    const target = document.querySelector(link.getAttribute("href"));
-    if (!target || !target.matches("[tabindex='-1']")) return;
-
-    window.setTimeout(() => target.focus({ preventScroll: true }), reducedMotion.matches ? 0 : 450);
-  });
-});
+} as const satisfies Readonly<Record<Language, string>>;

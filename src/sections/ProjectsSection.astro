@@ -1,0 +1,208 @@
+<section class="portfolio-section section-projets" id="projets" aria-labelledby="projets-title" tabindex="-1">
+  <div class="section-heading">
+    <p class="section-number" aria-hidden="true">02</p>
+    <div>
+      <p class="section-kicker">Concevoir / éprouver</p>
+      <h2 id="projets-title">Projets</h2>
+    </div>
+    <p class="section-side-note">Huit produits personnels et académiques, du besoin initial jusqu’à l’implémentation.</p>
+  </div>
+
+  <div class="project-ledger">
+    <article class="project-card project-card-featured">
+      <div class="project-visual" aria-hidden="true">
+        <img
+          class="project-art"
+          src="./assets/projects/chartmind.svg"
+          alt=""
+          width="600"
+          height="900"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="project-copy">
+        <p>Projet personnel · Produit IA</p>
+        <h3>ChartMind</h3>
+        <p>
+          Application web et mobile d’aide à la décision pour le trading — Forex, Bourse et
+          Crypto — utilisant Mistral AI pour accompagner l’analyse technique.
+        </p>
+        <div class="project-stack">
+          <span class="project-stack-label">Technos</span>
+          <ul aria-label="Stack et pratiques utilisées pour ChartMind">
+            <li>Conception produit</li><li>React</li><li>Mobile</li><li>Mistral AI</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card project-card-featured">
+      <div class="project-visual" aria-hidden="true">
+        <img
+          class="project-art"
+          src="./assets/projects/hindsight.webp"
+          alt=""
+          width="1024"
+          height="1536"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="project-copy">
+        <p>Projet personnel · Hackathon</p>
+        <h3>HindSight</h3>
+        <p>
+          HindSight est un système de responsabilisation temporelle pour agents IA : il reconstitue ce qui
+          était vrai, ce que l’agent pouvait connaître et les preuves qu’il a réellement utilisées au moment
+          d’une décision. Sa démonstration télécom synthétique combine verdicts déterministes, mémoire
+          procédurale bitemporelle et recherche vectorielle pour auditer puis corriger une facturation
+          contestée de manière idempotente.
+        </p>
+        <div class="project-stack">
+          <span class="project-stack-label">Technos</span>
+          <ul aria-label="Stack utilisée pour HindSight">
+            <li>Python</li><li>FastAPI</li><li>CockroachDB</li><li>AWS Bedrock</li><li>MCP</li><li>Données bitemporelles</li><li>ECS / Fargate</li>
+          </ul>
+        </div>
+        <a class="project-link" href="https://github.com/Mounir1200/HindSight" target="_blank" rel="noreferrer">
+          Voir le dépôt <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-visual" aria-hidden="true">
+        <img class="project-art" src="./assets/projects/grant-copilot.svg" alt="" width="600" height="240" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-copy">
+        <p>Projet personnel · Hackathon</p>
+        <h3>Grant Copilot</h3>
+        <p>
+          Agent Slack conçu pour le Slack Agent Builder Challenge (Agent for Good) : recherche en direct
+          sur Grants.gov via un serveur FastMCP sur mesure, présélection par filtres déterministes hors du
+          contrôle du modèle, suivi des candidatures et brouillons soumis à relecture. Chaque résultat cite
+          sa fiche officielle.
+        </p>
+        <div class="project-stack">
+          <span class="project-stack-label">Technos</span>
+          <ul aria-label="Stack utilisée pour Grant Copilot">
+            <li>Python</li><li>Slack Bolt</li><li>MCP / FastMCP</li><li>Mistral Small</li><li>SQLite</li><li>APScheduler</li><li>Render</li>
+          </ul>
+        </div>
+        <a class="project-link" href="https://github.com/Mounir1200/Grant-Copilot" target="_blank" rel="noreferrer">
+          Voir le dépôt <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-visual" aria-hidden="true">
+        <img class="project-art" src="./assets/projects/urdwell.svg" alt="" width="600" height="240" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-copy">
+        <p>Projet personnel · Open source</p>
+        <h3>UrdWell</h3>
+        <p>
+          Serveur MCP open source (Apache-2.0) qui donne à Claude Code, Claude Desktop, Codex et Gemini CLI
+          une mémoire persistante entre les sessions. Protocole LongMemEval retenu après un état de l’art
+          (MemGPT, Mem0, A-Mem, Zep) : en complément de la recherche vectorielle, BM25 avec fusion RRF porte
+          le rappel top-1 de 0,55 à 0,60 sur 419 questions ; la réutilisation des index ramène l’évaluation
+          complète de 60 h à 8,8 h. Un installeur en une ligne détecte chaque agent installé et le câble.
+        </p>
+        <div class="project-stack">
+          <span class="project-stack-label">Technos</span>
+          <ul aria-label="Stack utilisée pour UrdWell">
+            <li>Python</li><li>MCP</li><li>BM25 / RRF</li><li>Embeddings ONNX</li><li>Parquet</li><li>Tests E2E</li>
+          </ul>
+        </div>
+        <a class="project-link" href="https://github.com/Mounir1200/urdwell-mcp" target="_blank" rel="noreferrer">
+          Voir le dépôt <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-visual" aria-hidden="true">
+        <img class="project-art" src="./assets/projects/adqua.svg" alt="" width="600" height="240" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-copy">
+        <p>Projet personnel · Auto-hébergé</p>
+        <h3>ADQUA</h3>
+        <p>
+          Outil auto-hébergé qui extrait les compétences d’un CV PDF, collecte des offres sur
+          les sites carrières et les classe localement par pertinence sémantique.
+        </p>
+        <div class="project-stack">
+          <span class="project-stack-label">Technos</span>
+          <ul aria-label="Stack utilisée pour ADQUA">
+            <li>Python</li><li>NLP</li><li>Embeddings locales</li><li>Recherche sémantique</li><li>Web scraping</li><li>Docker Compose</li>
+          </ul>
+        </div>
+        <a class="project-link" href="https://github.com/Mounir1200/Ad-qua" target="_blank" rel="noreferrer">
+          Voir le dépôt <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-visual" aria-hidden="true">
+        <img class="project-art" src="./assets/projects/synthetic-face.svg" alt="" width="600" height="240" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-copy">
+        <p>Projet académique · Vision</p>
+        <h3>Détection de visages synthétiques</h3>
+        <p>
+          Préparation des données, entraînement et évaluation d’un modèle capable de distinguer
+          les visages réels de ceux modifiés par logiciel ou intelligence artificielle.
+        </p>
+        <div class="project-stack">
+          <span class="project-stack-label">Technos</span>
+          <ul aria-label="Stack utilisée pour la détection de visages synthétiques">
+            <li>Python</li><li>Machine learning</li><li>Classification d’images</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-visual" aria-hidden="true">
+        <img class="project-art" src="./assets/projects/activ-esaip.svg" alt="" width="600" height="240" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-copy">
+        <p>Projet académique · Outil métier</p>
+        <h3>Activ’ESAIP</h3>
+        <p>
+          Pour le client TIT, conception du parcours de saisie d’un outil estimant les coûts de
+          fabrication et de service liés à la pose de réseaux de chauffage urbain.
+        </p>
+        <div class="project-stack">
+          <span class="project-stack-label">Technos</span>
+          <ul aria-label="Stack et pratiques utilisées pour Activ’ESAIP">
+            <li>Application web</li><li>UX</li><li>Calcul métier</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-visual" aria-hidden="true">
+        <img class="project-art" src="./assets/projects/design4green.svg" alt="" width="600" height="240" loading="lazy" decoding="async" />
+      </div>
+      <div class="project-copy">
+        <p>Projet académique · Numérique responsable</p>
+        <h3>Design4Green</h3>
+        <p>
+          Développement d’une expérience web écoresponsable pour évaluer des sites selon le
+          RGAA, à la croisée de l’accessibilité et de l’écoconception numérique.
+        </p>
+        <div class="project-stack">
+          <span class="project-stack-label">Technos</span>
+          <ul aria-label="Stack et pratiques utilisées pour Design4Green">
+            <li>Web</li><li>RGAA</li><li>Écoconception</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
